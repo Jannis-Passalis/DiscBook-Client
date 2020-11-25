@@ -1,6 +1,6 @@
 const initialState = [];
 
-export default (state = initialState, action) => {
+export default function cdReducers(state = initialState, action) {
   switch (action.type) {
     case "ADD CDS": {
       return action.payload;
@@ -9,4 +9,4 @@ export default (state = initialState, action) => {
       return state;
     }
   }
-};
+}
