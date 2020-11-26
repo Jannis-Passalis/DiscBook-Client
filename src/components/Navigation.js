@@ -9,6 +9,9 @@ export default function NavigationBar() {
   const token = useSelector(selectToken);
 
   const loginLogoutButton = token ? <LogOutButton /> : <LoginButton />;
+  const myDiscbookBar = token ? (
+    <Nav.Link href="/mydiscbook">MyDiscBook</Nav.Link>
+  ) : null;
 
   return (
     <div>
@@ -16,7 +19,7 @@ export default function NavigationBar() {
         <Navbar.Brand href="/">DiscBook</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/mydiscbook">MyDiscBook</Nav.Link>
+          {myDiscbookBar}
           {loginLogoutButton}
         </Nav>
       </Navbar>
