@@ -9,7 +9,6 @@ export function addCds(cds) {
 }
 
 export async function fetchCds(dispatch, getState) {
-  console.log("what is DbUrl", DbUrl);
   try {
     const res = await axios.get(`${DbUrl}/cds`);
     const cds = res.data;
