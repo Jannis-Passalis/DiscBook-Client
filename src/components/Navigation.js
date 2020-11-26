@@ -36,7 +36,7 @@ export default function NavigationBar() {
         <Navbar.Brand href="/">DiscBook</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="#features">Features</Nav.Link>
+          <Nav.Link href="/mydiscbook">MyDiscBook</Nav.Link>
           {loginLogoutButton}
         </Nav>
       </Navbar>
