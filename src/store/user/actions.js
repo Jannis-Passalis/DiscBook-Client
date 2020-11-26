@@ -49,7 +49,6 @@ export const getUserWithStoredToken = () => {
       });
 
       const userInfo = response.data;
-      console.log("what is userInfo", userInfo);
 
       dispatch(userByToken(userInfo));
     } catch (error) {
