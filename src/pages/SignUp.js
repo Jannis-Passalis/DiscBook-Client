@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Col, Form, Container, Button } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Button, Col, Container, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../store/user/actions";
+import { useHistory } from "react-router-dom";
+import { signUp } from "../store/user/actions";
 import { selectToken } from "../store/user/selectors";
 
-export default function Login() {
+export default function SignUp() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
+  const [picture, setPicture] = useState("");
   const history = useHistory();
+  const dispatch = useDispatch();
   const token = useSelector(selectToken);
 
   useEffect(() => {
@@ -19,20 +21,33 @@ export default function Login() {
   }, [token, history]);
 
   function submitForm(event) {
-    console.log("hi, this is submit login console.log");
+    console.log("hi, this is submit sign up console.log");
     event.preventDefault();
 
-    dispatch(login(email, password));
+    dispatch(signUp(name, email, password, picture));
 
+    setName("");
     setEmail("");
     setPassword("");
+    setPicture("");
   }
 
   return (
     <Container>
       <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-        <h1 className="mt-5 mb-5">Login</h1>
+        <h1 className="mt-5 mb-5">Sign Up</h1>
         <Form.Group controlId="formBasicEmail">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            type="name"
+            placeholder="Enter name"
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formBasicPassword">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             value={email}
@@ -42,25 +57,31 @@ export default function Login() {
             required
           />
         </Form.Group>
-
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             type="password"
-            placeholder="Password"
+            placeholder="Enter password"
+            required
+          />
+        </Form.Group>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Profile Picture</Form.Label>
+          <Form.Control
+            value={picture}
+            onChange={(event) => setPicture(event.target.value)}
+            type="text"
+            placeholder="Enter a picture. Doesn't have to be a face"
             required
           />
         </Form.Group>
         <Form.Group className="mt-5">
           <Button variant="outline-dark" type="submit" onClick={submitForm}>
-            Log in
+            Sign Up
           </Button>
         </Form.Group>
-        <Link to="/signup" style={{ textAlign: "center" }}>
-          Click here to sign up
-        </Link>
       </Form>
     </Container>
   );

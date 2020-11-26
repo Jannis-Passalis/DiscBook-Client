@@ -60,3 +60,20 @@ export const getUserWithStoredToken = () => {
     }
   };
 };
+
+export const signUp = (name, email, password, picture) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.post(`${DbUrl}/signup`, {
+        name,
+        email,
+        password,
+        picture,
+      });
+      console.log("what is response", response);
+      dispatch(loginSuccess(response.data));
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+};
