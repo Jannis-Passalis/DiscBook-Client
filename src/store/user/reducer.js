@@ -14,8 +14,8 @@ export default function userReducer(state = initialState, action) {
       localStorage.removeItem("token");
       return { ...initialState, token: null };
 
-    // case TOKEN_STILL_VALID:
-    //   return { ...state, ...action.payload };
+    case "USER_BY_TOKEN":
+      return { ...state, ...action.payload };
 
     default:
       return state;
