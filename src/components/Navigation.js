@@ -3,11 +3,8 @@ import { Navbar, Nav, Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { selectToken } from "../store/user/selectors";
 import { logOut } from "../store/user/actions";
-// import { selectUser } from "../store/user/selectors";
 
 export default function NavigationBar() {
-  // const user = useSelector(selectUser);
-  // console.log("what is user in navigation", user); //It was just token without user names
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
 
@@ -40,7 +37,6 @@ export default function NavigationBar() {
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="#features">Features</Nav.Link>
-          {/* <Nav.Link>User Name</Nav.Link> */}
           {loginLogoutButton}
         </Nav>
       </Navbar>

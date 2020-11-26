@@ -5,10 +5,8 @@ const initialState = {
 };
 
 export default function userReducer(state = initialState, action) {
-  console.log("comes in the general reducer of user");
   switch (action.type) {
     case "LOGIN_SUCCESS":
-      console.log("comes in the login success reducer");
       localStorage.setItem("token", action.payload.token);
       return { ...state, ...action.payload };
 
