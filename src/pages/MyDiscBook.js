@@ -4,6 +4,7 @@ import { getUserWithStoredToken } from "../store/user/actions";
 import { selectUser } from "../store/user/selectors";
 import { Figure } from "react-bootstrap";
 import FigureCaption from "react-bootstrap/esm/FigureCaption";
+import moment from "moment";
 
 export default function MyDiscBook() {
   const dispatch = useDispatch();
@@ -20,6 +21,9 @@ export default function MyDiscBook() {
       <Figure>
         <FigureCaption>
           This DiscBook owner: <strong>{user.name}</strong>
+        </FigureCaption>
+        <FigureCaption>
+          Member since: {moment(user.createdAt).format("YYYY")}
         </FigureCaption>
         <Figure.Image
           className="rounded float-left"
