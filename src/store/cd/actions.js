@@ -12,7 +12,6 @@ export async function fetchCds(dispatch, getState) {
   try {
     const res = await axios.get(`${DbUrl}/cds`);
     const cds = res.data;
-    console.log("what is cds", cds);
     dispatch(addCds(cds));
   } catch (e) {
     console.log("error", e);

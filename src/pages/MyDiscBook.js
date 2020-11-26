@@ -5,14 +5,29 @@ import { selectUser } from "../store/user/selectors";
 import { Figure } from "react-bootstrap";
 import FigureCaption from "react-bootstrap/esm/FigureCaption";
 import moment from "moment";
+import { selectAllCds } from "../store/cd/selectors";
+import { fetchCds } from "../store/cd/actions";
 
 export default function MyDiscBook() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   console.log("what is user", user);
+  const cds = useSelector(selectAllCds);
+  console.log("what is cds in my discbook", cds);
+
+  const usersCds = cds?.filter((cd) => {
+    if (user.id === cd.list.userId) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  console.log("what is usersCds", usersCds);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
+    dispatch(fetchCds);
   }, [dispatch]);
 
   return (
@@ -31,9 +46,35 @@ export default function MyDiscBook() {
           height={200}
           src={user.picture}
           rounded
-          alt="Album Cover"
+          alt="Profile Picture"
         />
       </Figure>
+      <div>
+        {!usersCds
+          ? "Loading CD's"
+          : usersCds.map((cd) => {
+              return (
+                <ul key={cd.id}>
+                  <Figure>
+                    <Figure.Image
+                      className="rounded float-left"
+                      width={60}
+                      height={60}
+                      src={cd.albumCover}
+                      rounded
+                      alt="Album Cover"
+                    />
+                    <FigureCaption>
+                      <strong>
+                        {cd.artist} - {cd.album}
+                      </strong>{" "}
+                      ({cd.releaseYear})
+                    </FigureCaption>
+                  </Figure>
+                </ul>
+              );
+            })}
+      </div>
     </div>
   );
 }
