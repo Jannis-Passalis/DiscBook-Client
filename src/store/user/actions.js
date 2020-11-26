@@ -8,6 +8,13 @@ export const loginSuccess = (userWithToken) => {
   };
 };
 
+export const userByToken = (userInfo) => {
+  return {
+    type: "USER_BY_TOKEN",
+    payload: userInfo,
+  };
+};
+
 export const login = (email, password) => {
   return async (dispatch, getState) => {
     try {
@@ -32,37 +39,25 @@ export const logOut = () => ({ type: "LOG_OUT" });
 
 export const getUserWithStoredToken = () => {
   return async (dispatch, getState) => {
-    // get token from the state
     const token = localStorage.getItem("token");
 
-    // if we have no token, stop
     if (token === null) return;
 
-    // dispatch(appLoading());
     try {
-      // if we do have a token,
-      // check wether it is still valid or if it is expired
       const response = await axios.get(`${DbUrl}/user/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      console.log("token valid in me");
-      const validToken = response.data;
-      console.log("what is validToken", validToken);
+      const userInfo = response.data;
+      console.log("what is userInfo", userInfo);
 
-      // token is still valid
-      // dispatch(tokenStillValid(response.data));
-      // dispatch(appDoneLoading());
+      dispatch(userByToken(userInfo));
     } catch (error) {
       if (error.response) {
         console.log(error.response.message);
       } else {
         console.log(error);
       }
-      // if we get a 4xx or 5xx response,
-      // get rid of the token by logging out
-      // dispatch(logOut());
-      // dispatch(appDoneLoading());
     }
   };
 };
