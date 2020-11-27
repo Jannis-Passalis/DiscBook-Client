@@ -8,6 +8,13 @@ export function addCds(cds) {
   };
 }
 
+export function deleteCdFromStore(cdId) {
+  return {
+    type: "DELETE_CD",
+    payload: cdId,
+  };
+}
+
 export async function fetchCds(dispatch, getState) {
   try {
     const res = await axios.get(`${DbUrl}/cds`);
@@ -19,7 +26,6 @@ export async function fetchCds(dispatch, getState) {
 }
 
 export const AddCdToDb = (album, year, cdCover, userId) => {
-  console.log("add cd action is triggered");
   const token = localStorage.getItem("token");
   return async (dispatch, getState) => {
     try {
@@ -37,7 +43,30 @@ export const AddCdToDb = (album, year, cdCover, userId) => {
           },
         }
       );
-      console.log("what is res in addcdtodb", res);
+      console.log(
+        "logging to get rid of warning, until message is added / ADD",
+        res
+      );
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+};
+
+export const DeleteCdFromDb = (cdId) => {
+  const token = localStorage.getItem("token");
+  return async (dispatch, getState) => {
+    try {
+      const res = await axios.delete(`${DbUrl}/cds/delete/${cdId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(
+        "logging to get rid of warning, until message is added / DELETE",
+        res
+      );
+      dispatch(deleteCdFromStore(cdId));
     } catch (e) {
       console.log("error", e);
     }
