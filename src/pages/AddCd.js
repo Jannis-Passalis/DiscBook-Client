@@ -1,16 +1,21 @@
 import React, { useState } from "react";
-import { Button, Form, FormControl } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { Button, Figure, Form, FormControl } from "react-bootstrap";
+import FigureCaption from "react-bootstrap/esm/FigureCaption";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchApiCds } from "../store/cdSearch/actions";
+import { selectAllSearchedCds } from "../store/cdSearch/selector";
 
 export default function AddCd() {
   const [cdSearch, setCdSearch] = useState("");
   const dispatch = useDispatch();
+  const cdSearchResults = useSelector(selectAllSearchedCds);
+  console.log("what is cdSearchResults in page", cdSearchResults);
 
   function SubmitNewCdSearch(event) {
     console.log("hi, this is submit new cd search console.log");
     event.preventDefault();
 
-    // dispatch(login(cdSearch));
+    dispatch(fetchApiCds(cdSearch));
 
     setCdSearch("");
   }
@@ -36,6 +41,30 @@ export default function AddCd() {
           Search
         </Button>
       </Form>
+      <div>
+        {!cdSearchResults
+          ? "Loading CD's"
+          : cdSearchResults.map((cd) => {
+              return (
+                <ul key={cd.id}>
+                  <Figure>
+                    <Figure.Image
+                      className="rounded float-left"
+                      width={60}
+                      height={60}
+                      src={cd.thumb}
+                      rounded
+                      alt="Album Cover"
+                    />
+                    <FigureCaption>
+                      <strong>{cd.title}</strong> ({cd.year})
+                    </FigureCaption>
+                    <Button variant="outline-dark">Add This CD</Button>
+                  </Figure>
+                </ul>
+              );
+            })}
+      </div>
     </div>
   );
 }
