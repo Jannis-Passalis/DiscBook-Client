@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserWithStoredToken } from "../store/user/actions";
 import { selectUser } from "../store/user/selectors";
-import { Figure } from "react-bootstrap";
+import { Button, Figure, Form, Nav } from "react-bootstrap";
 import FigureCaption from "react-bootstrap/esm/FigureCaption";
 import moment from "moment";
 import { selectAllCds } from "../store/cd/selectors";
@@ -49,6 +49,11 @@ export default function MyDiscBook() {
           alt="Profile Picture"
         />
       </Figure>
+      <Form.Group className="mt-5">
+        <Nav.Link href="/addcd">
+          <Button variant="outline-dark">Add CD's to your collection</Button>
+        </Nav.Link>
+      </Form.Group>
       <div>
         {!usersCds
           ? "Loading CD's"
@@ -66,7 +71,7 @@ export default function MyDiscBook() {
                     />
                     <FigureCaption>
                       <strong>
-                        {cd.artist} - {cd.album}
+                        {cd.artist ? `${cd.artist} - ` : null} {cd.album}
                       </strong>{" "}
                       ({cd.releaseYear})
                     </FigureCaption>

@@ -5,6 +5,7 @@ import Navigation from "./components/Navigation";
 import Login from "./pages/Login";
 import MyDiscBook from "./pages/MyDiscBook";
 import SignUp from "./pages/SignUp";
+import AddCd from "./pages/AddCd";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/mydiscbook" component={MyDiscBook} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/addcd" component={AddCd} />
       </Switch>
     </div>
   );
