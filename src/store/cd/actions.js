@@ -8,6 +8,13 @@ export function addCds(cds) {
   };
 }
 
+export function deleteCdFromStore(cdId) {
+  return {
+    type: "DELETE_CD",
+    payload: cdId,
+  };
+}
+
 export async function fetchCds(dispatch, getState) {
   try {
     const res = await axios.get(`${DbUrl}/cds`);
@@ -61,6 +68,7 @@ export const DeleteCdFromDb = (cdId) => {
         }
       );
       console.log("what is res in deletecdfromdb", res);
+      // dispatch(deleteCdFromStore(cdId))
     } catch (e) {
       console.log("error", e);
     }
