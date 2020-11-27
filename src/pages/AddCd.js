@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Figure, Form, FormControl } from "react-bootstrap";
 import FigureCaption from "react-bootstrap/esm/FigureCaption";
 import { useDispatch, useSelector } from "react-redux";
+import { AddCdToDb } from "../store/cd/actions";
 import { fetchApiCds } from "../store/cdSearch/actions";
 import { selectAllSearchedCds } from "../store/cdSearch/selector";
 import { getUserWithStoredToken } from "../store/user/actions";
@@ -33,7 +34,7 @@ export default function AddCd() {
       console.log("hi, this is submit add cd console.log");
       event.preventDefault();
 
-      // dispatch(AddCds(album, year, cdCover, user.id));
+      dispatch(AddCdToDb(album, year, cdCover, user.id));
     };
   };
 
