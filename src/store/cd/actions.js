@@ -17,3 +17,14 @@ export async function fetchCds(dispatch, getState) {
     console.log("error", e);
   }
 }
+
+export const AddCdToDb = (album, year, cdCover, userId) => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await axios.patch(`${DbUrl}/cds/add`);
+      console.log("what is res in addcdtodb", res);
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+};
