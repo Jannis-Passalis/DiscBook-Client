@@ -32,6 +32,27 @@ export default function SignUp() {
     setPicture("");
   }
 
+  const myCropWidget = async () => {
+    const uploadWidget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "dvdmlxiws",
+        uploadPreset: "oy6o6i4o",
+        cropping: true,
+      },
+
+      (error, result) => {
+        console.log(error, result);
+
+        if (result.event === "success") {
+          setPicture(result.info.url);
+          //   uploadImageUrl(result.info.url);
+          console.log("what is result.info.url", result.info.url);
+        }
+      }
+    );
+    uploadWidget.open();
+  };
+
   return (
     <Container>
       <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
@@ -67,15 +88,11 @@ export default function SignUp() {
             required
           />
         </Form.Group>
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group>
           <Form.Label>Profile Picture</Form.Label>
-          <Form.Control
-            value={picture}
-            onChange={(event) => setPicture(event.target.value)}
-            type="text"
-            placeholder="Enter a picture. Doesn't have to be a face"
-            required
-          />
+          <Button variant="outline-info" onClick={myCropWidget}>
+            Upload profile picture
+          </Button>
         </Form.Group>
         <Form.Group className="mt-5">
           <Button variant="outline-dark" type="submit" onClick={submitForm}>

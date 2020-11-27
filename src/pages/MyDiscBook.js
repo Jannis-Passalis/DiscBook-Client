@@ -82,7 +82,7 @@ export default function MyDiscBook() {
                       <strong>
                         {cd.artist ? `${cd.artist} - ` : null} {cd.album}
                       </strong>{" "}
-                      ({cd.releaseYear})
+                      {cd.releaseYear ? `(${cd.releaseYear})` : null}
                       <Button
                         variant="outline-danger"
                         type="submit"
