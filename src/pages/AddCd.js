@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Figure, Form, FormControl } from "react-bootstrap";
 import FigureCaption from "react-bootstrap/esm/FigureCaption";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchApiCds } from "../store/cdSearch/actions";
 import { selectAllSearchedCds } from "../store/cdSearch/selector";
+import { getUserWithStoredToken } from "../store/user/actions";
+import { selectUser } from "../store/user/selectors";
 
 export default function AddCd() {
   const [cdSearch, setCdSearch] = useState("");
   const dispatch = useDispatch();
   const cdSearchResults = useSelector(selectAllSearchedCds);
+  const user = useSelector(selectUser);
   console.log("what is cdSearchResults in page", cdSearchResults);
+  console.log("what is user in add cds", user);
+
+  useEffect(() => {
+    dispatch(getUserWithStoredToken());
+  }, [dispatch]);
 
   function SubmitNewCdSearch(event) {
     console.log("hi, this is submit new cd search console.log");
@@ -25,7 +33,7 @@ export default function AddCd() {
       console.log("hi, this is submit add cd console.log");
       event.preventDefault();
 
-      // dispatch(fetchApiCds(cdSearch));
+      // dispatch(AddCds(album, year, cdCover, user.id));
     };
   };
 
