@@ -6,7 +6,7 @@ import { Button, Figure, Form, Nav } from "react-bootstrap";
 import FigureCaption from "react-bootstrap/esm/FigureCaption";
 import moment from "moment";
 import { selectAllCds } from "../store/cd/selectors";
-import { fetchCds } from "../store/cd/actions";
+import { DeleteCdFromDb, fetchCds } from "../store/cd/actions";
 
 export default function MyDiscBook() {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ export default function MyDiscBook() {
       console.log("hi, this is submit delete cd");
       event.preventDefault();
 
-      // dispatch(DeleteCdFromDb(cdId));
+      dispatch(DeleteCdFromDb(cdId));
     };
   };
 
@@ -86,7 +86,7 @@ export default function MyDiscBook() {
                       <Button
                         variant="outline-danger"
                         type="submit"
-                        onClick={SubmitDeleteCd}
+                        onClick={SubmitDeleteCd(cd.id)}
                       >
                         Delete CD from collection
                       </Button>

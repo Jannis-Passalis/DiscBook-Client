@@ -5,8 +5,8 @@ export default function cdReducer(state = initialState, action) {
     case "ADD CDS": {
       return action.payload;
     }
-    case "DELETE_CDS": {
-      const filteredCds = state.cds.filter((cd) => {
+    case "DELETE_CD": {
+      const filteredCds = state.filter((cd) => {
         if (cd.id === action.payload) {
           return false;
         } else {
