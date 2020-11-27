@@ -20,6 +20,15 @@ export default function AddCd() {
     setCdSearch("");
   }
 
+  const SubmitAddCd = (album, year, cdCover) => {
+    return (event) => {
+      console.log("hi, this is submit add cd console.log");
+      event.preventDefault();
+
+      // dispatch(fetchApiCds(cdSearch));
+    };
+  };
+
   return (
     <div>
       <h3 className="App">
@@ -57,9 +66,23 @@ export default function AddCd() {
                       alt="Album Cover"
                     />
                     <FigureCaption>
-                      <strong>{cd.title}</strong> ({cd.year})
+                      <strong>{cd.title}</strong>{" "}
+                      {cd.year ? `${cd.year},` : null}{" "}
+                      {cd.country ? `${cd.country},` : null}
+                      {cd.format
+                        ? `format:
+                      ${cd.format?.map((format) => {
+                        return format;
+                      })}`
+                        : null}
                     </FigureCaption>
-                    <Button variant="outline-dark">Add This CD</Button>
+                    <Button
+                      variant="outline-dark"
+                      type="submit"
+                      onClick={SubmitAddCd(cd.title, cd.year, cd.thumb)}
+                    >
+                      Add This CD
+                    </Button>
                   </Figure>
                 </ul>
               );
