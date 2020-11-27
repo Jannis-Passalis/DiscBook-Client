@@ -74,6 +74,9 @@ export default function MyDiscBook() {
                         {cd.artist ? `${cd.artist} - ` : null} {cd.album}
                       </strong>{" "}
                       ({cd.releaseYear})
+                      <Button variant="outline-danger">
+                        Delete CD from collection
+                      </Button>
                     </FigureCaption>
                   </Figure>
                 </ul>
