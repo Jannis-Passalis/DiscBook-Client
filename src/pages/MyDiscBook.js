@@ -25,6 +25,15 @@ export default function MyDiscBook() {
 
   console.log("what is usersCds", usersCds);
 
+  const SubmitDeleteCd = (cdId) => {
+    return (event) => {
+      console.log("hi, this is submit delete cd");
+      event.preventDefault();
+
+      // dispatch(DeleteCdFromDb(cdId));
+    };
+  };
+
   useEffect(() => {
     dispatch(getUserWithStoredToken());
     dispatch(fetchCds);
@@ -74,7 +83,11 @@ export default function MyDiscBook() {
                         {cd.artist ? `${cd.artist} - ` : null} {cd.album}
                       </strong>{" "}
                       ({cd.releaseYear})
-                      <Button variant="outline-danger">
+                      <Button
+                        variant="outline-danger"
+                        type="submit"
+                        onClick={SubmitDeleteCd}
+                      >
                         Delete CD from collection
                       </Button>
                     </FigureCaption>

@@ -43,3 +43,26 @@ export const AddCdToDb = (album, year, cdCover, userId) => {
     }
   };
 };
+
+export const DeleteCdFromDb = (cdId) => {
+  console.log("delete cd action is triggered");
+  const token = localStorage.getItem("token");
+  return async (dispatch, getState) => {
+    try {
+      const res = await axios.delete(
+        `${DbUrl}/cds/delete`,
+        {
+          cdId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("what is res in deletecdfromdb", res);
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+};
