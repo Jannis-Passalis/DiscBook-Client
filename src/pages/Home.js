@@ -43,7 +43,8 @@ export default function Home() {
                     />
                     <FigureCaption>
                       <strong>
-                        {cd.artist} - {cd.album}
+                        {cd.artist ? `${cd.artist} - ` : null}
+                        {cd.album}
                       </strong>{" "}
                       ({cd.releaseYear})
                     </FigureCaption>
