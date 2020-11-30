@@ -1,5 +1,6 @@
 import axios from "axios";
 import { DbUrl } from "../../config/constants";
+import { setMessage, showMessageWithTimeout } from "../messages/actions";
 
 export function addCds(cds) {
   return {
@@ -47,8 +48,13 @@ export const AddCdToDb = (album, year, cdCover, userId) => {
         "logging to get rid of warning, until message is added / ADD",
         res
       );
-    } catch (e) {
-      console.log("error", e);
+      dispatch(showMessageWithTimeout("success", true, "The CD is added"));
+    } catch (error) {
+      if (error.response) {
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+      }
     }
   };
 };
@@ -67,8 +73,19 @@ export const DeleteCdFromDb = (cdId) => {
         res
       );
       dispatch(deleteCdFromStore(cdId));
-    } catch (e) {
-      console.log("error", e);
+      dispatch(
+        showMessageWithTimeout(
+          "success",
+          true,
+          "The CD is successfully deleted"
+        )
+      );
+    } catch (error) {
+      if (error.response) {
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+      }
     }
   };
 };
