@@ -47,6 +47,9 @@ export default function Home() {
                         {cd.album}
                       </strong>{" "}
                       ({cd.releaseYear})
+                      {cd.forSale ? (
+                        <Button variant="info">Interested In</Button>
+                      ) : null}
                     </FigureCaption>
                   </Figure>
                 </ul>
