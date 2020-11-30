@@ -11,9 +11,9 @@ import { getUserWithStoredToken } from "../store/user/actions";
 export default function Home() {
   const dispatch = useDispatch();
   const cds = useSelector(selectAllCds);
-  console.log("what is cds in home page", cds);
+  // console.log("what is cds in home page", cds);
   const user = useSelector(selectUser);
-  console.log("what is user in home", user);
+  // console.log("what is user in home", user);
   // const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -54,18 +54,20 @@ export default function Home() {
                       </strong>{" "}
                       {cd.releaseYear ? `(${cd.releaseYear}), ` : null}
                       Owner: <strong>{cd.list.user.name}</strong>
-                      {cd.forSale ? (
-                        <Button
-                          variant="info"
-                          type="send"
-                          onClick={() =>
-                            dispatch(
-                              sendEmail(user.id, cd.list.user.id, cd.album)
-                            )
-                          }
-                        >
-                          Interested In
-                        </Button>
+                      {user.id !== cd.list.user.id ? (
+                        cd.forSale ? (
+                          <Button
+                            variant="info"
+                            type="send"
+                            onClick={() =>
+                              dispatch(
+                                sendEmail(user.id, cd.list.user.id, cd.album)
+                              )
+                            }
+                          >
+                            Interested In
+                          </Button>
+                        ) : null
                       ) : null}
                     </FigureCaption>
                   </Figure>

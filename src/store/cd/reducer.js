@@ -23,7 +23,7 @@ export default function cdReducer(state = initialState, action) {
           return true;
         }
       });
-      return [...filteredCds, action.payload]; //still not working (deletes the cd from store)
+      return [...filteredCds, action.payload];
     }
     default: {
       return state;
