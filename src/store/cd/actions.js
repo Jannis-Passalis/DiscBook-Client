@@ -16,6 +16,13 @@ export function deleteCdFromStore(cdId) {
   };
 }
 
+export function updateForSale(cd) {
+  return {
+    type: "UPDATE_FOR_SALE",
+    payload: cd,
+  };
+}
+
 export async function fetchCds(dispatch, getState) {
   try {
     const res = await axios.get(`${DbUrl}/cds`);
@@ -80,6 +87,21 @@ export const DeleteCdFromDb = (cdId) => {
           "The CD is successfully deleted"
         )
       );
+    } catch (error) {
+      if (error.response) {
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+      }
+    }
+  };
+};
+
+export const ChangeSellingOption = () => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await axios.patch(`${DbUrl}/cds/sell`);
+      console.log("what is res in change selling option", res);
     } catch (error) {
       if (error.response) {
         dispatch(setMessage("danger", true, error.response.data.message));

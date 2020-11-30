@@ -15,6 +15,9 @@ export default function cdReducer(state = initialState, action) {
       });
       return filteredCds;
     }
+    case "UPDATE_FOR_SALE": {
+      return state; //still have to work on this one
+    }
     default: {
       return state;
     }

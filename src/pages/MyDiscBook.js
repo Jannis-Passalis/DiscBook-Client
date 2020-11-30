@@ -82,7 +82,11 @@ export default function MyDiscBook() {
                       <strong>
                         {cd.artist ? `${cd.artist} - ` : null} {cd.album}
                       </strong>{" "}
-                      {cd.releaseYear ? `(${cd.releaseYear})` : null}
+                      {cd.releaseYear ? `(${cd.releaseYear}), ` : null}
+                      for sale: {cd.forSale ? "Yes " : "No "}
+                      <Button variant="outline-dark">
+                        {cd.forSale ? "Not sell it" : "Sell it"}
+                      </Button>
                       <Button
                         variant="outline-danger"
                         type="submit"
