@@ -1,3 +1,5 @@
+export const clearMessage = () => ({ type: "CLEAR_MESSAGE" });
+
 export const setMessage = (variant, dismissable, text) => {
   return {
     type: "SET_MESSAGE",
@@ -18,7 +20,7 @@ export const showMessageWithTimeout = (
   return (dispatch) => {
     dispatch(setMessage(variant, dismissable, text));
 
-    const timeout = timeOutMilliSeconds || DEFAULT_MESSAGE_TIMEOUT;
+    const timeout = timeOutMilliSeconds || 3000;
 
     setTimeout(() => dispatch(clearMessage()), timeout);
   };

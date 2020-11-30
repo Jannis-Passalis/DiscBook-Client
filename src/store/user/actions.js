@@ -1,5 +1,6 @@
 import { DbUrl } from "../../config/constants";
 import axios from "axios";
+import { setMessage, showMessageWithTimeout } from "../messages/actions";
 
 export const loginSuccess = (userWithToken) => {
   return {
@@ -24,10 +25,13 @@ export const login = (email, password) => {
       });
       console.log("this is the login response", response);
       const userWithoutToken = response.data;
+      dispatch(
+        showMessageWithTimeout("success", true, "You logged in successfully")
+      );
       dispatch(loginSuccess(userWithoutToken));
     } catch (error) {
       if (error.response) {
-        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
       } else {
         console.log(error.message);
       }
