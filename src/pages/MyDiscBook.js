@@ -15,9 +15,7 @@ import {
 export default function MyDiscBook() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  console.log("what is user", user);
   const cds = useSelector(selectAllCds);
-  console.log("what is cds in my discbook", cds);
 
   const usersCds = cds?.filter((cd) => {
     if (user.id === cd.list?.userId) {
