@@ -97,11 +97,27 @@ export const DeleteCdFromDb = (cdId) => {
   };
 };
 
-export const ChangeSellingOption = () => {
+export const ChangeSellingOption = (cdId) => {
   return async (dispatch, getState) => {
+    const token = localStorage.getItem("token");
+    console.log("what is token", token);
     try {
-      const res = await axios.patch(`${DbUrl}/cds/sell`);
+      const res = await axios.patch(
+        `${DbUrl}/cds/sell/update/${cdId}`,
+        {
+          cdId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log("what is res in change selling option", res);
+      dispatch(updateForSale(res.data.findCd));
+      dispatch(
+        showMessageWithTimeout("success", true, "Selling option is updated")
+      );
     } catch (error) {
       if (error.response) {
         dispatch(setMessage("danger", true, error.response.data.message));
