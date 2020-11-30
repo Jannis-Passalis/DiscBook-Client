@@ -16,6 +16,13 @@ export function deleteCdFromStore(cdId) {
   };
 }
 
+export function updateForSale(cd) {
+  return {
+    type: "UPDATE_FOR_SALE",
+    payload: cd,
+  };
+}
+
 export async function fetchCds(dispatch, getState) {
   try {
     const res = await axios.get(`${DbUrl}/cds`);
@@ -79,6 +86,68 @@ export const DeleteCdFromDb = (cdId) => {
           true,
           "The CD is successfully deleted"
         )
+      );
+    } catch (error) {
+      if (error.response) {
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+      }
+    }
+  };
+};
+
+export const ChangeSellingOption = (cdId) => {
+  return async (dispatch, getState) => {
+    const token = localStorage.getItem("token");
+    console.log("what is token", token);
+    try {
+      const res = await axios.patch(
+        `${DbUrl}/cds/sell/update/${cdId}`,
+        {
+          cdId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("what is res in change selling option", res.data.findCd);
+      dispatch(updateForSale(res.data.findCd));
+      dispatch(
+        showMessageWithTimeout("success", true, "Selling option is updated")
+      );
+    } catch (error) {
+      if (error.response) {
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+      }
+    }
+  };
+};
+
+export const sendEmail = (senderId, recieverId, album) => {
+  return async (dispatch, getState) => {
+    const token = localStorage.getItem("token");
+    try {
+      const res = await axios.post(
+        `${DbUrl}/email`,
+        {
+          senderId,
+          recieverId,
+          album,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(res);
+      dispatch(
+        showMessageWithTimeout("success", true, "Email sent to CD owner")
       );
     } catch (error) {
       if (error.response) {

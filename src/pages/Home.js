@@ -1,18 +1,24 @@
 import React, { useEffect } from "react";
 import "../App.css";
-import { fetchCds } from "../store/cd/actions";
+import { fetchCds, sendEmail } from "../store/cd/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllCds } from "../store/cd/selectors";
 import { Figure, FormControl, Form, Button } from "react-bootstrap";
 import FigureCaption from "react-bootstrap/FigureCaption";
+import { selectUser } from "../store/user/selectors";
+import { getUserWithStoredToken } from "../store/user/actions";
 
 export default function Home() {
   const dispatch = useDispatch();
   const cds = useSelector(selectAllCds);
-  console.log("what is cds in home page", cds);
+  // console.log("what is cds in home page", cds);
+  const user = useSelector(selectUser);
+  // console.log("what is user in home", user);
+  // const token = localStorage.getItem("token");
 
   useEffect(() => {
     dispatch(fetchCds);
+    dispatch(getUserWithStoredToken());
   }, [dispatch]);
 
   return (
@@ -46,7 +52,23 @@ export default function Home() {
                         {cd.artist ? `${cd.artist} - ` : null}
                         {cd.album}
                       </strong>{" "}
-                      ({cd.releaseYear})
+                      {cd.releaseYear ? `(${cd.releaseYear}), ` : null}
+                      Owner: <strong>{cd.list.user.name}</strong>
+                      {user.id !== cd.list.user.id ? (
+                        cd.forSale ? (
+                          <Button
+                            variant="info"
+                            type="send"
+                            onClick={() =>
+                              dispatch(
+                                sendEmail(user.id, cd.list.user.id, cd.album)
+                              )
+                            }
+                          >
+                            Interested In
+                          </Button>
+                        ) : null
+                      ) : null}
                     </FigureCaption>
                   </Figure>
                 </ul>

@@ -15,6 +15,16 @@ export default function cdReducer(state = initialState, action) {
       });
       return filteredCds;
     }
+    case "UPDATE_FOR_SALE": {
+      const filteredCds = state.filter((cd) => {
+        if (cd.id === action.payload.id) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      return [...filteredCds, action.payload];
+    }
     default: {
       return state;
     }
