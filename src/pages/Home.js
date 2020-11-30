@@ -1,60 +1,25 @@
 import React, { useEffect } from "react";
 import "../App.css";
-import { fetchCds } from "../store/cd/actions";
+import { fetchCds, sendEmail } from "../store/cd/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllCds } from "../store/cd/selectors";
 import { Figure, FormControl, Form, Button } from "react-bootstrap";
 import FigureCaption from "react-bootstrap/FigureCaption";
-// const nodemailer = require("nodemailer");
+import { selectUser } from "../store/user/selectors";
+import { getUserWithStoredToken } from "../store/user/actions";
 
 export default function Home() {
   const dispatch = useDispatch();
   const cds = useSelector(selectAllCds);
   console.log("what is cds in home page", cds);
+  const user = useSelector(selectUser);
+  console.log("what is user in home", user);
+  // const token = localStorage.getItem("token");
 
   useEffect(() => {
     dispatch(fetchCds);
+    dispatch(getUserWithStoredToken());
   }, [dispatch]);
-
-  // async function main() {
-  //   let testAccount = await nodemailer.createTestAccount();
-
-  //   let transporter = nodemailer.createTransport({
-  //     host: "smtp.ethereal.email",
-  //     port: 587,
-  //     secure: false, // true for 465, false for other ports
-  //     auth: {
-  //       user: testAccount.user, // generated ethereal user
-  //       pass: testAccount.pass, // generated ethereal password
-  //     },
-  //   });
-
-  //   let info = await transporter.sendMail({
-  //     from: '"Fred Foo 👻" <foo@example.com>', // sender address
-  //     to: "pasalis13@hotmail.com", // list of receivers
-  //     subject: "Hello ✔", // Subject line
-  //     text: "Hello world?", // plain text body
-  //     html: "<b>Hello world?</b>", // html body
-  //   });
-
-  //   // let info = await transporter.sendMail({
-  //   //   from: "discbookcommunity@info.com", // sender address
-  //   //   to: recieverEmail, // list of receivers
-  //   //   subject: "Interested In your CD ✔", // Subject line
-  //   //   text: `Hello ${recieverName},
-  //   //   the user ${userName} is interested in your CD ${specifiedCd}.
-  //   //   Is it still available? If so, please contact ${userName} through this email (${senderEmail}).
-  //   //   Kind regards,
-  //   //   The DiscBook Team`, // plain text body
-  //   //   // html: "<b>Hello world?</b>", // html body
-  //   // });
-
-  //   console.log("Message sent: %s", info.messageId);
-
-  //   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  // }
-
-  // main().catch(console.error);
 
   return (
     <div>
@@ -90,7 +55,15 @@ export default function Home() {
                       {cd.releaseYear ? `(${cd.releaseYear}), ` : null}
                       Owner: <strong>{cd.list.user.name}</strong>
                       {cd.forSale ? (
-                        <Button variant="info" type="send">
+                        <Button
+                          variant="info"
+                          type="send"
+                          onClick={() =>
+                            dispatch(
+                              sendEmail(user.id, cd.list.user.id, cd.album)
+                            )
+                          }
+                        >
                           Interested In
                         </Button>
                       ) : null}
