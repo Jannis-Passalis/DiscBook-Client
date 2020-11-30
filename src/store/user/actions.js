@@ -75,9 +75,23 @@ export const signUp = (name, email, password, picture) => {
         picture,
       });
       console.log("what is response", response);
+      dispatch(
+        showMessageWithTimeout("success", true, "You signed up successfully")
+      );
+      dispatch(
+        showMessageWithTimeout(
+          "success",
+          true,
+          "Welcome to the DiscBook family"
+        )
+      );
       dispatch(loginSuccess(response.data));
-    } catch (e) {
-      console.log("error", e);
+    } catch (error) {
+      if (error.response) {
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+      }
     }
   };
 };
