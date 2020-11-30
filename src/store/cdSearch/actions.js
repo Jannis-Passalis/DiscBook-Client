@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showMessageWithTimeout } from "../messages/actions";
 
 export const cdsInStore = (cds) => {
   return {
@@ -16,6 +17,13 @@ export const fetchApiCds = (cdSearch) => {
       console.log("This is res from new cd", res);
       const cds = res.data.results;
       dispatch(cdsInStore(cds));
+      dispatch(
+        showMessageWithTimeout(
+          "success",
+          true,
+          `Search for ${cdSearch} completed`
+        )
+      );
     } catch (e) {
       console.log("error", e);
     }
