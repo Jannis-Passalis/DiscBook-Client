@@ -2,16 +2,20 @@ import axios from "axios";
 import { DbUrl } from "../../config/constants";
 import { setMessage, showMessageWithTimeout } from "../messages/actions";
 
+export const ADD_CDS = "ADD_CDS";
+export const DELETE_CD = "DELETE_CD";
+export const UPDATE_FOR_SALE = "UPDATE_FOR_SALE";
+
 export function addCds(cds) {
   return {
-    type: "ADD CDS",
+    type: ADD_CDS,
     payload: cds,
   };
 }
 
 export function deleteCdFromStore(cdId) {
   return {
-    type: "DELETE_CD",
+    type: DELETE_CD,
     payload: cdId,
   };
 }
