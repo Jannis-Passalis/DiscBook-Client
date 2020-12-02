@@ -3,7 +3,7 @@ import "../App.css";
 import { fetchCds, sendEmail } from "../store/cd/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllCds } from "../store/cd/selectors";
-import { Figure, Button } from "react-bootstrap";
+import { Figure, Button, Jumbotron, Container } from "react-bootstrap";
 import FigureCaption from "react-bootstrap/FigureCaption";
 import { selectUser } from "../store/user/selectors";
 import { getUserWithStoredToken } from "../store/user/actions";
@@ -20,11 +20,15 @@ export default function Home() {
 
   return (
     <div>
-      <h3>Take a look at all the cds</h3>
-      <h6>
-        and dont forget to send an email with the "Interested in" button, if you
-        are Interested in buying the CD
-      </h6>
+      <Jumbotron fluid>
+        <Container>
+          <h3>Take a look at all the cds</h3>
+          <p>
+            <strong>DON'T</strong> forget to send an email with the "Interested
+            in" button, if you are Interested in buying the CD.
+          </p>
+        </Container>
+      </Jumbotron>
       <div>
         {!cds
           ? "Loading CD's"
