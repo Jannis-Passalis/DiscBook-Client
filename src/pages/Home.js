@@ -22,10 +22,11 @@ export default function Home() {
     <div>
       <Jumbotron fluid>
         <Container>
-          <h3>Take a look at all the CDs</h3>
+          <h3>Take a look at all the CDs in DiscBook</h3>
           <p>
-            <strong>DON'T</strong> forget to send an email with the "Interested
-            in" button, if you are Interested in buying the CD you found.
+            <strong>DON'T</strong> forget to send an email by clicking the
+            "Interested in" button, if you are Interested in buying the CD you
+            found.
           </p>
         </Container>
       </Jumbotron>

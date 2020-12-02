@@ -11,25 +11,11 @@ import {
   DeleteCdFromDb,
   fetchCds,
 } from "../store/cd/actions";
-import { showMessageWithTimeout } from "../store/messages/actions";
 
 export default function MyDiscBook() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const cds = useSelector(selectAllCds);
-
-  useEffect(() => {
-    if (!user.id) {
-      dispatch(
-        showMessageWithTimeout(
-          "info",
-          true,
-          "You are online more than 2 hours without authenticating yourself again. For the safety of your account, please logout and login again.",
-          7000
-        )
-      );
-    }
-  }, [user.id, dispatch]);
 
   const usersCds = cds?.filter((cd) => {
     if (user.id === cd.list?.userId) {

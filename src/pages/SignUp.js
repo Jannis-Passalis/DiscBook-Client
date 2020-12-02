@@ -98,7 +98,7 @@ export default function SignUp() {
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Profile Picture</Form.Label>
+          <Form.Label>Profile Picture: </Form.Label>
           <Button variant="outline-info" onClick={myCropWidget}>
             Upload profile picture
           </Button>
