@@ -25,7 +25,7 @@ export default function Home() {
           <h3>Take a look at all the CDs</h3>
           <p>
             <strong>DON'T</strong> forget to send an email with the "Interested
-            in" button, if you are Interested in buying the CD.
+            in" button, if you are Interested in buying the CD you found.
           </p>
         </Container>
       </Jumbotron>
