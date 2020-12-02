@@ -1,5 +1,4 @@
 import "./App.css";
-import Home from "./pages/Home";
 import { Switch, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Login from "./pages/Login";
@@ -7,6 +6,9 @@ import MyDiscBook from "./pages/MyDiscBook";
 import SignUp from "./pages/SignUp";
 import AddCd from "./pages/AddCd";
 import ScreenMessages from "./components/ScreenMessages";
+import Home from "./pages/Home";
+import WelcomePage from "./pages/WelcomePage";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -14,7 +16,9 @@ function App() {
       <Navigation />
       <ScreenMessages />
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={WelcomePage} />
+        <Route path="/cds" component={Home} />
+        <Route path="/about" component={About} />
         <Route path="/login" component={Login} />
         <Route path="/mydiscbook" component={MyDiscBook} />
         <Route path="/signup" component={SignUp} />

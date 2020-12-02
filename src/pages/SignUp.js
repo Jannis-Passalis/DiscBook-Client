@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { showMessageWithTimeout } from "../store/messages/actions";
 import { signUp } from "../store/user/actions";
 import { selectToken } from "../store/user/selectors";
 
@@ -17,8 +18,16 @@ export default function SignUp() {
   useEffect(() => {
     if (token !== null) {
       history.push("/");
+      dispatch(
+        showMessageWithTimeout(
+          "info",
+          true,
+          "You are already logged in with an account. Please log out if you want to login or sign up with another user.",
+          7000
+        )
+      );
     }
-  }, [token, history]);
+  }, [token, history, dispatch]);
 
   function submitForm(event) {
     console.log("hi, this is submit sign up console.log");
