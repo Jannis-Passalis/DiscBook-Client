@@ -1,6 +1,6 @@
 # DiscBook
 
-[Discbook](https://discbook.netlify.com)(click the link to see it) was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and is deployed on Netlify.
+[DiscBook](https://discbook.netlify.com)(click the link to see it) was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and is deployed on Netlify.
 
 ## What is DiscBook about?
 
