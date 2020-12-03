@@ -28,3 +28,31 @@ The functionalities that this app relies on are:
 ## Wireframes
 
 <img src="wireframePictures/ScreenshotSignUp.png" alt="signup" height="270"/><img src="wireframePictures/ScreenshotMyDiscbook.png" alt="mydiscbook" height="270"/><img src="wireframePictures/ScreenshotDiscBookLogin.png" alt="login" height="270"/><img src="wireframePictures/ScreenshotCDs.png" alt="cds" height="270"/><img src="wireframePictures/ScreenshotWelcome.png" alt="welcome" height="270"/><img src="wireframePictures/ScreenshotDiscbookAbout.png" alt="about" height="270"/><img src="wireframePictures/ScreenshotSearchNewCD.png" alt="newcdsearch" height="270"/>
+
+## Datamodel
+
+[Discbook datamodel](https://dbdiagram.io/d/5fbba0563a78976d7b7d0aea)
+
+## Taskboard
+
+[Discbook taskboard](https://github.com/users/Jannis-Passalis/projects/1)
+
+## Learning Goals
+
+- Creating a website from scratch
+- Styling with Bootstrap
+- Sending emails with Nodemailer
+- Uploading pictures with cloudinary
+- Connecting to an API that needs consumer and secret key
+- Deploying to Heroku
+- Creating ReadMe for project
+- Using a Taskboard
+- Using development and feature branches and not only master branch
+
+## Installation Guide
+
+- Install all dependencies
+
+```
+npm install
+```
