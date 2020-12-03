@@ -27,4 +27,4 @@ The functionalities that this app relies on are:
 
 ## Wireframes
 
-<img src="wireframePictures/ScreenshotSignUp.png" alt="signup" height="270"/><img src="wireframePictures/ScreenshotMyDiscbook.png" alt="mydiscbook" height="270"/><img src="wireframePictures/ScreenshotDiscBookLogin.png" alt="login" height="270"/><img src="wireframePictures/ScreenshotCDs.png" alt="cds" height="270"/><img src="wireframePictures/ScreenshotWelcome.png" alt="login" height="270"/><img src="wireframePictures/ScreenshotDiscbookAbout.png" alt="login" height="270"/>
+<img src="wireframePictures/ScreenshotSignUp.png" alt="signup" height="270"/><img src="wireframePictures/ScreenshotMyDiscbook.png" alt="mydiscbook" height="270"/><img src="wireframePictures/ScreenshotDiscBookLogin.png" alt="login" height="270"/><img src="wireframePictures/ScreenshotCDs.png" alt="cds" height="270"/><img src="wireframePictures/ScreenshotWelcome.png" alt="welcome" height="270"/><img src="wireframePictures/ScreenshotDiscbookAbout.png" alt="about" height="270"/><img src="wireframePictures/ScreenshotSearchNewCD.png" alt="newcdsearch" height="270"/>
