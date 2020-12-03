@@ -63,7 +63,7 @@ export default function Home() {
                               )
                             }
                           >
-                            Interested In
+                            Interested In {cd.list.user.name}'s CD
                           </Button>
                         ) : null
                       ) : null}
