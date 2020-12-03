@@ -25,11 +25,8 @@ export default function MyDiscBook() {
     }
   });
 
-  console.log("what is usersCds", usersCds);
-
   const SubmitDeleteCd = (cdId) => {
     return (event) => {
-      console.log("hi, this is submit delete cd");
       event.preventDefault();
 
       dispatch(DeleteCdFromDb(cdId));

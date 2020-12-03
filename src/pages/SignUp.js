@@ -30,7 +30,6 @@ export default function SignUp() {
   }, [token, history, dispatch]);
 
   function submitForm(event) {
-    console.log("hi, this is submit sign up console.log");
     event.preventDefault();
 
     dispatch(signUp(name, email, password, picture));
@@ -54,8 +53,6 @@ export default function SignUp() {
 
         if (result.event === "success") {
           setPicture(result.info.url);
-          //   uploadImageUrl(result.info.url);
-          console.log("what is result.info.url", result.info.url);
         }
       }
     );

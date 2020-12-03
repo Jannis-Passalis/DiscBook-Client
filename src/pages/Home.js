@@ -52,7 +52,7 @@ export default function Home() {
                       </strong>{" "}
                       {cd.releaseYear ? `(${cd.releaseYear}), ` : null}
                       Owner: <strong>{cd.list.user.name}</strong>
-                      {user.id !== cd.list.user.id ? (
+                      {user.id !== cd.list.user.id && user.token !== null ? (
                         cd.forSale ? (
                           <Button
                             variant="info"
