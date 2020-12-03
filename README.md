@@ -21,4 +21,4 @@ The functionalities that this app relies on are:
 - testing the cd actions if the right information is fetched with [JEST](https://jestjs.io/)
 - showing information on screen with the support of a [Redux](https://redux.js.org/) store and the the [backend](https://github.com/Jannis-Passalis/DiscBook-Server) part of this project 
 
-The main technologies that were used to make this app (in this frontend part) were: React, Redux, JEST, Cloudinary, Moment, Bootstrap, Axios.
+The main technologies that were used to make this app (in this frontend part) were: ![react-icon]("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png"), Redux, JEST, Cloudinary, Moment, Bootstrap, Axios.
