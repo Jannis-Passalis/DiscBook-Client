@@ -40,7 +40,7 @@ export default function WelcomePage() {
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src="/images/joinUs.jpg"
+                src="/images/gray-wall.png"
                 alt="Third slide"
               />
 
