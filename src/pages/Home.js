@@ -12,6 +12,7 @@ import SpinnerLoading from "../components/SpinnerLoading";
 export default function Home() {
   const dispatch = useDispatch();
   const cds = useSelector(selectAllCds);
+  console.log("what is cds", cds);
   const user = useSelector(selectUser);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function Home() {
         </Container>
       </Jumbotron>
       <div>
-        {!cds ? (
+        {cds === [] || !cds ? (
           <SpinnerLoading />
         ) : (
           cds.map((cd) => {
