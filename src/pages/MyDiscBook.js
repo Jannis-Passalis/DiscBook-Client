@@ -48,6 +48,10 @@ export default function MyDiscBook() {
         <FigureCaption>
           Member since: {moment(user.createdAt).format("YYYY")}
         </FigureCaption>
+        <FigureCaption>
+          {" "}
+          {user.name}'s CDs: {usersCds.length}
+        </FigureCaption>
         <Figure.Image
           className="rounded float-left"
           width={200}
