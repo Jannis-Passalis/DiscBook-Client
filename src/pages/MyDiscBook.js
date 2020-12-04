@@ -2,7 +2,14 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserWithStoredToken } from "../store/user/actions";
 import { selectUser } from "../store/user/selectors";
-import { Button, Figure, Form, Nav } from "react-bootstrap";
+import {
+  Button,
+  Figure,
+  Form,
+  Nav,
+  Container,
+  Jumbotron,
+} from "react-bootstrap";
 import FigureCaption from "react-bootstrap/esm/FigureCaption";
 import moment from "moment";
 import { selectAllCds } from "../store/cd/selectors";
@@ -40,32 +47,53 @@ export default function MyDiscBook() {
 
   return (
     <div>
-      <h3>My DiscBook</h3>
-      <Figure>
-        <FigureCaption>
-          This DiscBook owner: <strong>{user.name}</strong>
-        </FigureCaption>
-        <FigureCaption>
-          Member since: {moment(user.createdAt).format("YYYY")}
-        </FigureCaption>
-        <FigureCaption>
-          {" "}
-          {user.name}'s CDs: {usersCds.length}
-        </FigureCaption>
-        <Figure.Image
-          className="rounded float-left"
-          width={200}
-          height={200}
-          src={user.picture}
-          rounded
-          alt="Profile Picture"
-        />
-      </Figure>
+      <Jumbotron>
+        <Container>
+          <h3
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            My DiscBook
+          </h3>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <Figure>
+              <Figure.Image
+                className="rounded"
+                width={200}
+                height={200}
+                src={user.picture}
+                rounded
+                alt="Profile Picture"
+              />
+              <FigureCaption>
+                This DiscBook owner: <strong>{user.name}</strong>
+              </FigureCaption>
+              <FigureCaption>
+                Member since: {moment(user.createdAt).format("YYYY")}
+              </FigureCaption>
+              <FigureCaption>
+                {" "}
+                {user.name}'s CDs: {usersCds.length}
+              </FigureCaption>
+            </Figure>
+          </div>
+        </Container>
+      </Jumbotron>
       <Form.Group className="mt-5">
         <Nav.Link href="/addcd">
           <Button variant="outline-dark">Add CD's to your collection</Button>
         </Nav.Link>
       </Form.Group>
+
       <div>
         {!usersCds
           ? "Loading CD's"

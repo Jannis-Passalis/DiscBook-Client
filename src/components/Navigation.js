@@ -21,8 +21,8 @@ export default function NavigationBar() {
           <Nav.Link href="/cds">CDs</Nav.Link>
           {myDiscbookBar}
           <Nav.Link href="/about">About Us</Nav.Link>
-          <Form inline>{loginLogoutButton}</Form>
         </Nav>
+        <Form inline>{loginLogoutButton}</Form>
       </Navbar>
     </div>
   );

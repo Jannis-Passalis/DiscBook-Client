@@ -43,22 +43,30 @@ export default function AddCd() {
       <h3 className="App">
         Search for the CD you want to add to your collection.
       </h3>
-      <Form inline>
-        <FormControl
-          type="text"
-          placeholder="Search"
-          className="mr-sm-2"
-          value={cdSearch}
-          onChange={(event) => setCdSearch(event.target.value)}
-        />
-        <Button
-          variant="outline-dark"
-          type="submit"
-          onClick={SubmitNewCdSearch}
-        >
-          Search
-        </Button>
-      </Form>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        <Form inline>
+          <FormControl
+            type="text"
+            placeholder="Search"
+            className="mr-sm-2"
+            value={cdSearch}
+            onChange={(event) => setCdSearch(event.target.value)}
+          />
+          <Button
+            variant="outline-dark"
+            type="submit"
+            onClick={SubmitNewCdSearch}
+          >
+            Search
+          </Button>
+        </Form>
+      </div>
       <div>
         {!cdSearchResults
           ? "Loading CD's"
