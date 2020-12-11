@@ -56,3 +56,7 @@ The functionalities that this app relies on are:
 ```
 npm install
 ```
+- Run the app
+```
+npm run start
+```
